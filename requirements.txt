@@ -1,0 +1,10 @@
+gspread 
+oauth2client 
+pandas 
+nltk 
+scikit-learn 
+wordcloud
+openpyxl 
+matplotlib
+plotly 
+kaleido
