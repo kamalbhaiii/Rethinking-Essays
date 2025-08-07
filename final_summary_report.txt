@@ -4,36 +4,36 @@ Visualized as 3D-style pie chart from selected options.
 
 
 Q2: Can you describe a positive experience you've had with any type of assessment?
-Theme 0: project, based, knowledge, assessment, apply
-Theme 1: cloud, using, worked, tasked, skills
-Theme 2: process, topic, collaborating, worked, assessment
+Theme 0: cloud, oral, project, skills, azure
+Theme 1: worked, model, class, assessment, learning
+Theme 2: project, based, best, knowledge, assessment
 
 
 Q3: What do you find most challenging or frustrating about traditional essay-based assessments?
-Theme 0: time, consuming, pressure, write, writing
-Theme 1: plagiarism, risk, learning, practical, challenge
-Theme 2: write, feel, hard, limited, writing
+Theme 0: time, pressure, consuming, understand, topic
+Theme 1: plagiarism, risk, practical, questions, learning
+Theme 2: write, students, hard, limited, generated
 
 
 Q4: Have you ever found oral assessments (like presentations or vivas) helpful or stressful? Why?
-Theme 0: yes, presentation, answers, time, skills
-Theme 1: immediate, interacting, evaluators, best, feedback
-Theme 2: oral, improve, confidence, actually, questions
+Theme 0: answers, yes, time, confidence, way
+Theme 1: public, unexpected, speaking, pressure, performance
+Theme 2: yes, oral, language, skills, confidence
 
 
 Q5: How do project-based or performance-based assessments compare with other formats in terms of showing what you’ve learned?
-Theme 0: based, project, assessment, abilities, learn
-Theme 1: creativity, hand, experience, effort, skills
-Theme 2: team, involvement, allows, world, work
+Theme 0: experience, hand, like, hands, time
+Theme 1: creativity, effort, practical, better, real
+Theme 2: team, involvement, projects, learn, allows
 
 
 Q6: Do you feel certain assessment formats encourage or discourage academic dishonesty (like using AI tools)? Why?
-Theme 0: project, based, exams, yes, assessments
-Theme 1: tests, traditional, online, fake, harder
-Theme 2: make, harder, tempting, original, live
+Theme 0: learning, task, tool, use, ease
+Theme 1: assessment, project, exams, essay, based
+Theme 2: yes, assessments, written, based, work
 
 
 Q7: If you could design your ideal assessment format, what would it include and why?
-Theme 0: project, based, oral, presentation, assessment
-Theme 1: assessment, skills, practical, presentations, tasks
-Theme 2: project, presentation, effort, followed, results
+Theme 0: based, project, oral, work, ve
+Theme 1: combination, creative, way, apply, short
+Theme 2: project, assessment, presentation, skills, oral
