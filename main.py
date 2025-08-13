@@ -1,4 +1,6 @@
 import os
+import re
+import difflib
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
@@ -8,10 +10,8 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
-import difflib
 import plotly.express as px
 import plotly.graph_objects as go
-from collections import Counter
 
 nltk.download('stopwords')
 tokenizer = TreebankWordTokenizer()
@@ -19,6 +19,42 @@ tokenizer = TreebankWordTokenizer()
 def setup():
     os.makedirs("output", exist_ok=True)
     return pd.read_excel("Sheet.xlsx")
+
+def normalize_colname(s: str) -> str:
+    if not isinstance(s, str):
+        s = str(s)
+    s = s.lower()
+    s = re.sub(r"\s+", " ", s)           # collapse all whitespace/newlines
+    s = s.strip()
+    return s
+
+def get_best_match(question: str, columns):
+    qn = normalize_colname(question)
+
+    # Build normalized mapping
+    norm_map = {normalize_colname(c): c for c in columns}
+    norm_cols = list(norm_map.keys())
+
+    # 1) exact normalized
+    if qn in norm_map:
+        return norm_map[qn], "exact"
+
+    # 2) startswith
+    for nc in norm_cols:
+        if nc.startswith(qn) or qn.startswith(nc):
+            return norm_map[nc], "startswith"
+
+    # 3) contains
+    for nc in norm_cols:
+        if qn in nc or nc in qn:
+            return norm_map[nc], "contains"
+
+    # 4) fuzzy (looser cutoff)
+    matches = difflib.get_close_matches(qn, norm_cols, n=1, cutoff=0.3)
+    if matches:
+        return norm_map[matches[0]], "fuzzy"
+
+    return None, None
 
 def get_combined_stopwords(question):
     default = set(stopwords.words('english'))
@@ -66,12 +102,20 @@ def generate_pie_chart_from_options(series, question_number, question_text):
         title_font_size=20,
         height=600
     )
-    fig.write_image(f"output/Question-{question_number}.png", engine="kaleido")
+    # NOTE: Plotly deprecation warns about engine param; Kaleido is already the engine used.
+    fig.write_image(f"output/Question-{question_number}.png")
 
 def cluster_responses(clean_column, label_column, df, question_number, question_text):
     try:
+        # guard for empty text
+        if df[clean_column].str.strip().replace("", pd.NA).dropna().empty:
+            return f"\nQ{question_number}: {question_text}\nNo valid responses to cluster.\n"
+
         vectorizer = TfidfVectorizer(max_df=0.9, min_df=2, stop_words='english')
         X = vectorizer.fit_transform(df[clean_column])
+        if X.shape[0] < 2 or X.shape[1] < 2:
+            return f"\nQ{question_number}: {question_text}\nNot enough responses/features for clustering.\n"
+
         kmeans = KMeans(n_clusters=3, random_state=42).fit(X)
         df[label_column] = kmeans.labels_
 
@@ -82,15 +126,17 @@ def cluster_responses(clean_column, label_column, df, question_number, question_
             words = [terms[ind] for ind in centroids[i, :5]]
             summaries.append(f"Theme {i}: " + ", ".join(words))
         return f"\nQ{question_number}: {question_text}\n" + "\n".join(summaries) + "\n"
-    except:
-        df[label_column] = -1
-        return f"\nQ{question_number}: {question_text}\nNot enough data to cluster.\n"
+    except Exception as e:
+        return f"\nQ{question_number}: {question_text}\nError in clustering: {e}\n"
 
 def process_question(i, question, df, summary_report, output_dfs):
-    matched = difflib.get_close_matches(question, df.columns.tolist(), n=1)
-    if not matched:
+    best_col, how = get_best_match(question, df.columns.tolist())
+
+    if not best_col:
+        summary_report.append(f"\nQ{i+1}: {question}\nColumn not found in dataset.\n")
         return
-    col_name = matched[0]
+
+    col_name = best_col
     clean_col, label_col = f"Q{i+1}_clean", f"Q{i+1}_Theme"
 
     if i == 0:
@@ -98,7 +144,7 @@ def process_question(i, question, df, summary_report, output_dfs):
         df[clean_col] = df[col_name]
         df[label_col] = None
         output_dfs.append(df[[col_name, clean_col]])
-        summary_report.append(f"\nQ{i+1}: {question}\nVisualized as 3D-style pie chart from selected options.\n")
+        summary_report.append(f"\nQ{i+1}: {question}\nVisualized as pie chart from selected options.\n")
         return
 
     stop_words = get_combined_stopwords(question)
@@ -107,12 +153,13 @@ def process_question(i, question, df, summary_report, output_dfs):
     generate_wordcloud(all_words, i + 1)
     summary = cluster_responses(clean_col, label_col, df, i + 1, question)
     summary_report.append(summary)
-    output_dfs.append(df[[col_name, clean_col, label_col]])
+    output_dfs.append(df[[col_name, clean_col] + ([label_col] if label_col in df.columns else [])])
 
 def main():
     df = setup()
     questions = [
         "How do you personally prefer to be assessed in your courses?",
+        "Reason why you prefer the method chosen above.",
         "Can you describe a positive experience you've had with any type of assessment?",
         "What do you find most challenging or frustrating about traditional essay-based assessments?",
         "Have you ever found oral assessments (like presentations or vivas) helpful or stressful? Why?",
