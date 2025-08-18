@@ -1,0 +1,29 @@
+• Reason why people prefer **Oral-based**:
+  - Top reasons: oral (18), assessments (18), assessment (11), written (9), understanding (9), 's (8), learning (8), ideas (8), explain (8), student (7)
+
+• Reason why people prefer **Process-based**:
+  - Top reasons: learning (9), understanding (7), assessments (6), process-based (5), also (5), time (5), rather (5), allow (5), fairer (5), reflect (4)
+
+• Reason why people prefer **Performance-based**:
+  - Top reasons: performance-based (15), assessments (14), projects (14), practical (13), learning (12), skills (11), time (11), also (11), apply (10), feel (10)
+
+• Positive experiences by type (Q3): see word clouds in /output and term bars in /analysis/Q3_top_terms.png
+• Most challenging aspects of **Process-based** (Q4): time (9), pressure (6), focus (6), sometimes (6), often (6), there’s (5), feel (5), final (4), essay (4), unclear (4), also (4), one (3)
+• Oral assessments (Q5): Helpful=62, Stressful=47
+  - Helpful keywords: helpful (63), assessments (42), oral (41), stressful (40), confidence (30), found (24), questions (24), also (23), ideas (21), evaluators (21)
+  - Stressful keywords: helpful (52), assessments (41), stressful (41), oral (39), confidence (24), found (21), ideas (21), preparation (19), questions (19), evaluators (19)
+• Academic dishonesty (Q7): Encourage=60, Discourage=49
+  - See heatmap: analysis/Q7_dishonesty_matrix.png
+    · Oral-based: Encourage=26, Discourage=28
+    · Process-based: Encourage=45, Discourage=41
+    · Performance-based: Encourage=37, Discourage=39
+• Ideal assessment (Q8) — distribution:
+  - Hybrid: 47
+  - Oral-based: 12
+  - Performance-based: 5
+  - Other/Unclear: 2
+  - Process-based: 0
+  - See bar chart: analysis/Q8_ideal_assessment.png
+
+— Synthesis —
+Students prefer **Performance-based** tasks (projects, portfolios) as primary, with **Oral** components (presentations/vivas) used to validate authenticity; **Process-based** essays are least favored due to time cost and AI/plagiarism vulnerability.
