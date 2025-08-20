@@ -1,5 +1,5 @@
 • Reason why people prefer **Oral-based**:
-  - Top reasons: oral (18), assessments (18), assessment (11), written (9), understanding (9), 's (8), learning (8), ideas (8), explain (8), student (7)
+  - Top reasons: oral (19), assessments (19), assessment (11), understanding (10), written (9), learning (9), ideas (9), 's (8), communication (8), style (8)
 
 • Reason why people prefer **Process-based**:
   - Top reasons: learning (9), understanding (7), assessments (6), process-based (5), also (5), time (5), rather (5), allow (5), fairer (5), reflect (4)
@@ -9,17 +9,17 @@
 
 • Positive experiences by type (Q3): see word clouds in /output and term bars in /analysis/Q3_top_terms.png
 • Most challenging aspects of **Process-based** (Q4): time (9), pressure (6), focus (6), sometimes (6), often (6), there’s (5), feel (5), final (4), essay (4), unclear (4), also (4), one (3)
-• Oral assessments (Q5): Helpful=62, Stressful=47
-  - Helpful keywords: helpful (63), assessments (42), oral (41), stressful (40), confidence (30), found (24), questions (24), also (23), ideas (21), evaluators (21)
-  - Stressful keywords: helpful (52), assessments (41), stressful (41), oral (39), confidence (24), found (21), ideas (21), preparation (19), questions (19), evaluators (19)
-• Academic dishonesty (Q7): Encourage=60, Discourage=49
+• Oral assessments (Q5): Helpful=63, Stressful=48
+  - Helpful keywords: helpful (65), assessments (43), oral (42), stressful (41), confidence (31), found (25), questions (24), also (23), evaluators (22), ideas (21)
+  - Stressful keywords: helpful (54), assessments (42), stressful (42), oral (40), confidence (25), found (22), ideas (21), preparation (20), evaluators (20), questions (19)
+• Academic dishonesty (Q7): Encourage=61, Discourage=50
   - See heatmap: analysis/Q7_dishonesty_matrix.png
-    · Oral-based: Encourage=26, Discourage=28
-    · Process-based: Encourage=45, Discourage=41
-    · Performance-based: Encourage=37, Discourage=39
+    · Oral-based: Encourage=27, Discourage=29
+    · Process-based: Encourage=46, Discourage=42
+    · Performance-based: Encourage=38, Discourage=40
 • Ideal assessment (Q8) — distribution:
   - Hybrid: 47
-  - Oral-based: 12
+  - Oral-based: 13
   - Performance-based: 5
   - Other/Unclear: 2
   - Process-based: 0
