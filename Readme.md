@@ -1,28 +1,27 @@
+# 🎓 Student Assessment Preferences — Qualitative & Descriptive Analysis
 
-# 🎓 Student Assessment Preferences — Qualitative Analysis
-
-This project analyzes students' preferences for various assessment formats (e.g., oral exams, essays, projects) using **qualitative data** collected through a Google Form.
+This project analyzes students' preferences for different assessment formats (oral, process-based, and performance-based) using **qualitative survey data** collected through Google Forms.
 
 It explores the research question:  
-**“How do students want to be assessed in higher education?”**
+**“How do students prefer to be assessed in higher education in the age of AI?”**
 
-This study is part of the *Human-Machine Interaction* module at Frankfurt University of Applied Sciences, with the broader research focus:  
+This study is part of the *Human-Machine Interaction* module at **Frankfurt University of Applied Sciences**, under the broader theme:  
 **“Rethinking Essays: Alternatives in Education Using AI.”**
 
 ---
 
 ## 🧠 What the Script Does
 
-The `main.py` Python script automates the analysis of all open-ended questions from the collected responses:
+The `main.py` script automates text cleaning, clustering, and visualization for survey responses:
 
-- ✅ Loads the responses from an Excel file (`Sheet.xlsx`)
-- ✅ Cleans textual data using NLP techniques
+- ✅ Loads responses from `Sheet.xlsx`  
+- ✅ Cleans and normalizes open-ended responses using NLP (tokenization + stopwords removal)  
 - ✅ Generates:
-  - 📊 A **3D-style pie chart** for Question 1 (which has fixed options)
-  - ☁️ **High-resolution word clouds** for open-ended responses (Q2–Q7)
-- ✅ Uses **unsupervised clustering** (KMeans) to identify **themes** in student responses
-- ✅ Creates a **summary report** of extracted themes per question
-- ✅ Outputs everything in a clean, visual format
+  - 📊 A **pie chart** for Question 1 (fixed-choice responses)  
+  - ☁️ **Word clouds** for Questions 2–8  
+  - 📈 **Bar charts & heatmaps** for descriptive insights  
+- ✅ Performs **theme clustering (KMeans)** on textual responses  
+- ✅ Saves a **summary report** and **descriptive conclusions**
 
 ---
 
@@ -30,52 +29,36 @@ The `main.py` Python script automates the analysis of all open-ended questions f
 
 ```
 project-folder/
-├── Sheet.xlsx                          # Input file (Google Form responses)
-├── main.py                             # Main analysis script
-├── qualitative_analysis_all_questions.csv  # Final dataset with labels
-├── final_summary_report.txt            # Thematic summary per question
-├── output/
-│   ├── Question-1.png                  # 3D pie chart (Q1)
-│   ├── Question-2.png to Question-7.png# Word clouds (Q2–Q7)
+├── Sheet.xlsx                          # Input data (Google Form responses)
+├── main.py                             # Analysis script
+├── qualitative_analysis_all_questions.csv  # Processed dataset with labels
+├── final_summary_report.txt            # Thematic clustering per question
+├── Descriptive_Conclusion.txt          # Extended descriptive analysis & findings
+├── output/                             # Charts & word clouds
+└── analysis/                           # Additional analysis plots (bar charts, heatmaps)
 ```
 
 ---
 
 ## 🚀 How to Run the Script
 
-### 1. Make a virtual environment
-
-Run this in your terminal:
-
+1. **Set up virtual environment**  
 ```bash
 python -m venv .venv
+source .venv/bin/activate   # Mac/Linux
+.venv\Scripts\activate    # Windows
 ```
 
-### 1. Activate the virtual environment
-
-Run this in your terminal:
-
-```bash
-source .venv/Scripts/activate
-```
-
-### 3. Install the Required Libraries
-
-Run this in your terminal:
-
+2. **Install requirements**  
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Prepare Your Excel File
+3. **Place your survey file**  
+Download your Google Form responses as Excel and rename it:  
+`Sheet.xlsx`
 
-Ensure your Google Form responses are downloaded and saved as:  
-```Sheet.xlsx```
-
-Place it in the same folder as `main.py`.
-
-### 5. Run the Script
-
+4. **Run the script**  
 ```bash
 python main.py
 ```
@@ -86,63 +69,54 @@ python main.py
 
 | Output File | Description |
 |-------------|-------------|
-| `qualitative_analysis_all_questions.csv` | Cleaned responses + theme labels |
-| `final_summary_report.txt` | Theme keywords (e.g., “Theme 0: project, portfolio…”) |
-| `output/Question-1.png` | Donut-style 3D pie chart of Q1 choices |
-| `output/Question-2.png to 7.png` | Word clouds per open-ended question |
+| `qualitative_analysis_all_questions.csv` | Cleaned responses with theme labels |
+| `final_summary_report.txt` | Clustered keywords per question |
+| `Descriptive_Conclusion.txt` | Human-readable conclusions for each RQ |
+| `output/Question-*.png` | Word clouds & charts per question |
+| `analysis/*.png` | Extra descriptive analysis (bar charts, heatmaps) |
 
 ---
 
-## 🔍 How to Analyze the Output
+## 🔍 Findings (Summary)
 
-### Pie Chart (Q1)
-Shows how students responded to:
-> “How do you personally prefer to be assessed in your courses?”
-
-Useful to **quantify preference trends** (e.g., projects vs. essays).
-
----
-
-### Word Clouds (Q2–Q7)
-Give a quick visual overview of:
-- Most frequent terms in responses
-- What students emphasize (e.g., fairness, AI, stress)
+- **Performance-based assessments** (projects, portfolios) were the most preferred (≈49%), valued for *skills, creativity, and authenticity*.  
+- **Oral assessments** (presentations, vivas) followed (≈36%), appreciated for *confidence-building and communication*, though sometimes stressful.  
+- **Process-based assessments** (essays, journals) were least preferred (≈15%), criticized as *time-consuming, stressful, and vulnerable to AI/plagiarism*.  
+- Students want **hybrid formats** that blend projects with oral validation for fairness and authenticity.  
+- Academic dishonesty was seen as *most likely in essays*, less so in projects and oral exams.  
 
 ---
 
-### Summary Report
-Located in: `final_summary_report.txt`
+## 📝 Conclusion
 
-Each question will have 3 identified **themes** using KMeans clustering:
-```text
-Q2: Can you describe a positive experience...
-Theme 0: presentation, confidence, explained
-Theme 1: feedback, personal, engagement
-Theme 2: understanding, fun, project
-```
+Students strongly favor **performance-based and oral methods** over traditional essays.  
+They call for **hybrid assessments** that:  
+- Allow *practical application* (projects, teamwork, portfolios)  
+- Include *oral components* (presentations/vivas) for validation  
+- Reduce reliance on *essays*, which are vulnerable to AI misuse  
 
-You can manually interpret and rename these themes for your final paper/report.
+This reflects a shift toward **authentic, engaging, and AI-resilient assessment models** aligned with real-world competencies.
 
 ---
 
 ## 👥 Authors
 
-- Kamal Sharma [kamal.sharma@stud.fra-uas.de]
-- Hafiz Muhammad Ali [hafiz.ali2@stud.fra-uas.de]
-- Ranjit Khude [ranjit.khude@stud.fra-uas.de]
-- Tanishka Agale [tanishka.agale@stud.fra-uas.de]
-- Rency Padasala [rency.padasala@stud.fra-uas.de]
+- Kamal Sharma  
+- Hafiz Muhammad Ali  
+- Ranjit Khude  
+- Tanishka Agale  
+- Rency Padasala  
 
 ---
 
 ## 🙏 Acknowledgements
 
-This research project was conducted as part of the **Human Machine Interaction** module at **Frankfurt University of Applied Sciences**, during the **Summer Semester 2024**.
+This project was conducted as part of the **Human-Machine Interaction** module at **Frankfurt University of Applied Sciences** during **Summer Semester 2024**.  
 
-We would like to express our sincere gratitude to **Prof. Valentin Schwind [valentin.schwind@fb2.fra-uas.de]** for his guidance, support, and valuable feedback throughout this study.
+We thank **Prof. Dr. Valentin Schwind** for his guidance, supervision, and support.
 
 ---
 
 ## 📘 License
 
-This project is for academic purposes only and is part of a university module submission. Use with credit.
+For academic and research use only under university guidelines.
